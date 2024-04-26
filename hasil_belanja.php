@@ -1,28 +1,24 @@
 <?php
-$nama = $_GET['nama'];
-$product = $_GET['product'];
-$jumlah = $_GET['jumlah'];
+// tangkap input form
+$customer = $_POST['customer'];
+$produk = $_POST['produk'];
+$jumlah = $_POST['jumlah'];
 
-// Daftar harga produk
-$harga_tv = 4200000;
-$harga_kulkas = 3200000;
-$harga_mesin_cuci = 3800000;
+// array harga produk
 
-// Menghitung total harga berdasarkan produk yang dipilih
-if ($product === 'TV') {
-    $total_harga = $jumlah * $harga_tv;
-} elseif ($product === 'KULKAS') {
-    $total_harga = $jumlah * $harga_kulkas;
-} elseif ($product === 'MESIN CUCI') {
-    $total_harga = $jumlah * $harga_mesin_cuci;
-} else {
-    $total_harga = 0; // Default jika produk tidak valid
-}
+$harga = [
+    'TV' => 4200000,
+    'Kulkas' => 3100000,
+    'Mesin Cuci' => 3800000
+];
 
-// Menampilkan hasil
-echo '<h2>Hasil Belanja Online</h2>';
-echo 'Nama Customer: ' . $nama . '<br>';
-echo 'Produk Pilihan: ' . $product . '<br>';
-echo 'Jumlah Barang: ' . $jumlah . '<br>';
-echo 'Total Harga: Rp ' . number_format($total_harga, 0, ',','.');
-?>
+// hitung total harga (jumlah * harga produk)
+$total = $jumlah * $harga[$produk];
+
+// format rupiah
+$total = number_format($total);
+
+echo "Nama Customer: $customer";
+echo "<br> Produk: $produk";
+echo "<br> Jumlah Beli: $jumlah";
+echo "<br> Total Belanja: Rp $total";
